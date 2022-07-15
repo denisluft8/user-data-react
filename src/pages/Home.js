@@ -1,19 +1,19 @@
-import Header from "../components/Header";
-import UserTable from "../components/UserTable";
-import { userArr } from "../mock/users";
-import { products, productsArr } from "../mock/products";
+import Header from '../components/Header'
+import Table from '../components/Table'
+import { userArr } from '../mock/users'
+import { productsArr } from '../mock/products'
 
 const Home = () => {
-  const headerUser = ["Name", "Email", "Occupation", "Birthday",]
-  const headerProduct = ["Product", "Company", "Price",]
+  const headerUser = ['Name', 'Email', 'Occupation', 'Birthday']
+  const headerProduct = ['Product', 'Company', 'Price']
 
   return (
     <>
       <Header />
-      <UserTable type="user" headerData={headerUser} bodyData={userArr} />
-      <UserTable type="product" headerData={headerProduct} bodyData={productsArr} />
+      <Table type="user" headerData={headerUser} bodyData={userArr} />
+      <Table type="product" headerData={headerProduct} bodyData={productsArr} />
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
