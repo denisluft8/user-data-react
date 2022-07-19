@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+.user-data {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  .user-table {
+    border-collapse: collapse;
+    width: 75%;
+  }
+  
+  .data-th {
+    font-size: 15px;
+    text-align: left;
+  }
+  .data-th > th {
+    padding: 12px;
+    border-bottom: 3px solid #f3f4f4;
+    color: grey;
+  }
+  .data-tr > td {
+    padding: 12px;
+    background-color: white;
+    border-bottom: 5px solid #f3f4f4;
+  }
