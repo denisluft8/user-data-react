@@ -1,12 +1,12 @@
-import { formatDate } from "../../utils/formatDate";
-import "./table.css";
+import { formatDate } from '../../utils/formatDate'
+import './table.css'
 
 function Table(props) {
-  const { headerData, bodyData, type } = props;
-  const isUser = type === "user";
+  const { headerData, bodyData, type, removeItem } = props
+  const isUser = type === 'user'
 
   const buildTableItems = () => {
-    return bodyData.map((item) => (
+    return bodyData.map((item, index) => (
       <tr className="data-tr">
         <td>{item.name}</td>
         {isUser ? (
@@ -14,6 +14,9 @@ function Table(props) {
             <td>{item.email}</td>
             <td>{item.occupation}</td>
             <td>{formatDate(item.birthday)}</td>
+            <td>
+              <button onClick={() => removeItem(index)}>Delete</button>
+            </td>
           </>
         ) : (
           <>
@@ -22,14 +25,14 @@ function Table(props) {
           </>
         )}
       </tr>
-    ));
-  };
+    ))
+  }
   return (
     <div className="user-data">
       <table className="user-table">
         <thead>
           <tr className="data-th">
-            {headerData.map((headerTable) => (
+            {headerData.map(headerTable => (
               <th>{headerTable}</th>
             ))}
           </tr>
@@ -37,10 +40,10 @@ function Table(props) {
         <tbody>{buildTableItems()}</tbody>
       </table>
     </div>
-  );
+  )
 }
 
-export default Table;
+export default Table
 
 //nth-child
 //useState

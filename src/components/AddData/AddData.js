@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { userArr } from "../../mock/users";
+import React, { useState } from 'react'
+import { userArr } from '../../mock/users'
 
 function AddData({ saveData }) {
   const [addFormData, setAddFormData] = useState({
-    name: "",
-    email: "",
-    occupation: "",
-    birthday: "",
-  });
-  const handleFormSubmit = (event) => {
+    name: '',
+    email: '',
+    occupation: '',
+    birthday: ''
+  })
+  const handleFormSubmit = event => {
     //chamada quando aperta o botão
-    event.preventDefault();
+    event.preventDefault()
 
-    saveData(addFormData);
-  };
+    saveData(addFormData)
+  }
   return (
     <form onSubmit={handleFormSubmit}>
       <input
@@ -21,16 +21,14 @@ function AddData({ saveData }) {
         placeholder="name"
         name="name"
         required="required"
-        onChange={(e) =>
-          setAddFormData({ ...addFormData, name: e.target.value })
-        }
+        onChange={e => setAddFormData({ ...addFormData, name: e.target.value })}
       />
       <input
         type="text"
         placeholder="email"
         name="email"
         required="required"
-        onChange={(e) =>
+        onChange={e =>
           setAddFormData({ ...addFormData, email: e.target.value })
         }
       />
@@ -39,7 +37,7 @@ function AddData({ saveData }) {
         placeholder="occupation"
         name="occupation"
         required="required"
-        onChange={(e) =>
+        onChange={e =>
           setAddFormData({ ...addFormData, occupation: e.target.value })
         }
       />
@@ -47,13 +45,13 @@ function AddData({ saveData }) {
         type="date"
         name="birthday"
         required="required"
-        onChange={(e) =>
+        onChange={e =>
           setAddFormData({ ...addFormData, birthday: e.target.value })
         }
       />
       <button type="submit">Add</button>
     </form>
-  );
+  )
 }
 
-export default AddData;
+export default AddData
