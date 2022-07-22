@@ -1,46 +1,60 @@
-import './Home.css'
-import React, { useEffect, useState } from 'react'
-import Header from '../components/Header/Header'
-import Table from '../components/Table/Table'
-import AddData from '../components/AddData/AddData'
-import { userArr } from '../mock/users'
-import { productsArr } from '../mock/products'
+import "./Home.css";
+import React, { useEffect, useState } from "react";
+import Header from "../components/Header/Header";
+import Table from "../components/Table/Table";
+import AddData from "../components/AddData/AddData";
+import SearchBar from "../components/SearchBar/SearchBar";
+import { userArr } from "../mock/users";
 
 const Home = () => {
-  const headerUser = ['Name', 'Email', 'Occupation', 'Birthday']
-  const headerProduct = ['Product', 'Company', 'Price']
-  const [newUserArr, setNewUserArr] = useState(userArr)
-  const addDataToArr = form => {
-    setNewUserArr([...newUserArr, form])
+  const headerUser = ["Name", "Email", "Occupation", "Birthday"];
+  const [newUserArr, setNewUserArr] = useState(userArr);
+  const [searchedItem, setSearchedItem] = useState("");
+
+  const searchedArray = newUserArr.filter((item) => {
+    if (item.name.toLowerCase().includes(searchedItem.toLowerCase())) {
+      return true;
+    }
+  });
+  function onSearch(e) {
+    setSearchedItem(e);
   }
-  const deleteData = indexUserArr => {
-    let restOfDataArray = newUserArr.filter(
-      (element, ind) => ind !== indexUserArr
-    )
-    setNewUserArr(restOfDataArray)
-  }
+
+  const addDataToArr = (form) => {
+    setNewUserArr([...newUserArr, form]);
+  };
 
   useEffect(() => {
     setTimeout(() => {
       // alert('Novo Usuário Adicionado')
-    }, 100)
-  }, [newUserArr])
+    }, 100);
+  }, [newUserArr]);
+
+  const deleteData = (data) => {
+    let restOfDataArray = newUserArr.filter(
+      (element, ind) =>
+        `${element.name}${element.email}${element.occupation}${element.birthday}` !== data
+    );
+    setNewUserArr(restOfDataArray);
+    console.log(newUserArr)
+  };
 
   return (
     <>
       <Header />
+      <SearchBar searchedData={searchedItem} onSearch={onSearch} />
       <Table
         type="user"
         headerData={headerUser}
-        bodyData={newUserArr}
-        removeItem={index => deleteData(index)}
+        bodyData={searchedArray}
+        removeItem={(index) => deleteData(index)}
       />
-      <AddData saveData={val => addDataToArr(val)} />
+      <AddData saveData={(val) => addDataToArr(val)} />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 //campo de busca pelo nome
 //ordenação - select que vai listar os items de cabeçario e quando selecionar ordenar por ordem alfabética

@@ -1,0 +1,22 @@
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.search-bar label {
+  margin-right: 5px;
+}
+
+.search-bar input {
+  border: 1px solid lightgrey;
+  height: 25px;
+  caret-color: grey;
+  padding-left: 5px;
+}
+
+.search-bar input:focus {
+  outline: none;
+}
+

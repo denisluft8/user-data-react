@@ -1,8 +1,8 @@
 .user-data {
-  padding-top: 50px;
+  padding-top: 20px;
   display: flex;
   justify-content: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .user-table {
@@ -23,4 +23,17 @@
   padding: 12px;
   background-color: white;
   border-bottom: 5px solid #f3f4f4;
+}
+
+.delete-button {
+  background-color: #939393;
+  border: none;
+  color: white;
+  padding: 9px 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.delete-button:hover{
+  background-color: #828282;
 }

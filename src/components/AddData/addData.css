@@ -1,0 +1,38 @@
+.add-data {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.add-data-inputs {
+  border: 1px solid lightgrey;
+  caret-color: grey;
+  padding: 8px;
+  margin: 4px 2px;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.add-data-inputs-date {
+  border: 1px solid lightgrey;
+  caret-color: grey;
+  padding: 8px;
+  margin: 4px 2px;
+  color: grey;
+  outline: none;
+}
+
+.add-data button {
+  background-color: #939393;
+  border: none;
+  color: white;
+  padding: 9px 20px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.add-data button:hover {
+  background-color: #828282;
+}

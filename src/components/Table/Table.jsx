@@ -1,49 +1,45 @@
-import { formatDate } from '../../utils/formatDate'
-import './table.css'
+import { formatDate } from "../../utils/formatDate";
+import "./table.css";
 
 function Table(props) {
-  const { headerData, bodyData, type, removeItem } = props
-  const isUser = type === 'user'
+  const { headerData, bodyData, removeItem } = props;
 
-  const buildTableItems = () => {
-    return bodyData.map((item, index) => (
-      <tr className="data-tr">
-        <td>{item.name}</td>
-        {isUser ? (
-          <>
-            <td>{item.email}</td>
-            <td>{item.occupation}</td>
-            <td>{formatDate(item.birthday)}</td>
-            <td>
-              <button onClick={() => removeItem(index)}>Delete</button>
-            </td>
-          </>
-        ) : (
-          <>
-            <td>{item.company}</td>
-            <td>{item.price}</td>
-          </>
-        )}
-      </tr>
-    ))
-  }
   return (
     <div className="user-data">
       <table className="user-table">
         <thead>
           <tr className="data-th">
-            {headerData.map(headerTable => (
+            {headerData.map((headerTable) => (
               <th>{headerTable}</th>
             ))}
           </tr>
         </thead>
-        <tbody>{buildTableItems()}</tbody>
+        <tbody>
+          {bodyData.map((item, index) => (
+            <tr className="data-tr">
+              <td>{item.name}</td>
+              <td>{item.email}</td>
+              <td>{item.occupation}</td>
+              <td>{formatDate(item.birthday)}</td>
+              <td>
+                <button
+                  className="delete-button"
+                  onClick={() =>
+                    removeItem(
+                      `${item.name}${item.email}${item.occupation}${item.birthday}`
+                    )}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
-  )
+  );
 }
 
-export default Table
+export default Table;
 
 //nth-child
 //useState
