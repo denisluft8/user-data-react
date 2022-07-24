@@ -11,6 +11,13 @@ const Home = () => {
   const [newUserArr, setNewUserArr] = useState(userArr);
   const [searchedItem, setSearchedItem] = useState("");
 
+  const sortData = () => {
+    let sortUserName = [...newUserArr].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    setNewUserArr(sortUserName);
+  };
+
   const searchedArray = newUserArr.filter((item) => {
     if (item.name.toLowerCase().includes(searchedItem.toLowerCase())) {
       return true;
@@ -33,10 +40,10 @@ const Home = () => {
   const deleteData = (data) => {
     let restOfDataArray = newUserArr.filter(
       (element, ind) =>
-        `${element.name}${element.email}${element.occupation}${element.birthday}` !== data
+        `${element.name}${element.email}${element.occupation}${element.birthday}` !==
+        data
     );
     setNewUserArr(restOfDataArray);
-    console.log(newUserArr)
   };
 
   return (
@@ -48,6 +55,7 @@ const Home = () => {
         headerData={headerUser}
         bodyData={searchedArray}
         removeItem={(index) => deleteData(index)}
+        sortData={sortData}
       />
       <AddData saveData={(val) => addDataToArr(val)} />
     </>

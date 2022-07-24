@@ -1,21 +1,27 @@
+import { useMemo, useState } from "react";
 import { formatDate } from "../../utils/formatDate";
 import "./table.css";
 
 function Table(props) {
-  const { headerData, bodyData, removeItem } = props;
+  const { headerData, bodyData, removeItem, sortData } = props;
 
+  //sort
+  
+  //sort
   return (
     <div className="user-data">
       <table className="user-table">
         <thead>
           <tr className="data-th">
             {headerData.map((headerTable) => (
-              <th>{headerTable}</th>
+              <th onClick={(sortData)} id={headerTable.toLowerCase()}>
+                  {headerTable}
+              </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {bodyData.map((item, index) => (
+          {bodyData.map((item) => (
             <tr className="data-tr">
               <td>{item.name}</td>
               <td>{item.email}</td>
@@ -27,7 +33,9 @@ function Table(props) {
                   onClick={() =>
                     removeItem(
                       `${item.name}${item.email}${item.occupation}${item.birthday}`
-                    )}>
+                    )
+                  }
+                >
                   Delete
                 </button>
               </td>
