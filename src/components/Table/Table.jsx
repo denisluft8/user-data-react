@@ -14,8 +14,8 @@ function Table(props) {
         <thead>
           <tr className="data-th">
             {headerData.map((headerTable) => (
-              <th onClick={(sortData)} id={headerTable.toLowerCase()}>
-                  {headerTable}
+              <th onClick={sortData} id={"header-"+headerTable.toLowerCase()}>
+                {headerTable}
               </th>
             ))}
           </tr>

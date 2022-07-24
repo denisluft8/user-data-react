@@ -10,12 +10,23 @@ const Home = () => {
   const headerUser = ["Name", "Email", "Occupation", "Birthday"];
   const [newUserArr, setNewUserArr] = useState(userArr);
   const [searchedItem, setSearchedItem] = useState("");
+  const [order, setOrder] = useState("");
 
   const sortData = () => {
-    let sortUserName = [...newUserArr].sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-    setNewUserArr(sortUserName);
+    
+    if (order === "" || "asc") {
+      let sortUserName = [...newUserArr].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      setOrder("dsc");
+      setNewUserArr(sortUserName);
+    } if (order === "dsc") {
+      let sortUserName = [...newUserArr].sort((a, b) =>
+        b.name.localeCompare(a.name)
+      );
+      setOrder("asc");
+      setNewUserArr(sortUserName);
+    }
   };
 
   const searchedArray = newUserArr.filter((item) => {
@@ -54,7 +65,7 @@ const Home = () => {
         type="user"
         headerData={headerUser}
         bodyData={searchedArray}
-        removeItem={(index) => deleteData(index)}
+        removeItem={(el) => deleteData(el)}
         sortData={sortData}
       />
       <AddData saveData={(val) => addDataToArr(val)} />
