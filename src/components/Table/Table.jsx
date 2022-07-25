@@ -1,21 +1,27 @@
-import { useMemo, useState } from "react";
 import { formatDate } from "../../utils/formatDate";
 import "./table.css";
 
 function Table(props) {
-  const { headerData, bodyData, removeItem, sortData } = props;
+  const { headerData, bodyData, removeItem, sortData, ordIcon } = props;
 
-  //sort
-  
-  //sort
+  const getSortIcon = (columnHeader) => {
+    if (!ordIcon[columnHeader]) {
+      return "↕︎";
+    }
+    return ordIcon[columnHeader] === "dsc" ? "↓" : "↑";
+  };
+
   return (
     <div className="user-data">
       <table className="user-table">
         <thead>
           <tr className="data-th">
             {headerData.map((headerTable) => (
-              <th onClick={sortData} id={"header-"+headerTable.toLowerCase()}>
-                {headerTable}
+              <th
+                onClick={() => sortData(headerTable)}
+                id={"header-" + headerTable.toLowerCase()}
+              >
+                {headerTable} {getSortIcon(headerTable)}
               </th>
             ))}
           </tr>

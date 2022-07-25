@@ -37,3 +37,7 @@
 .delete-button:hover{
   background-color: #828282;
 }
+
+#arrow-img{
+  height: 10px;
+}

@@ -8,24 +8,42 @@ import { userArr } from "../mock/users";
 
 const Home = () => {
   const headerUser = ["Name", "Email", "Occupation", "Birthday"];
+  const columnMap = {
+    Name: { key: "name", type: "string" },
+    Email: { key: "email", type: "string" },
+    Occupation: { key: "occupation", type: "string" },
+    Birthday: { key: "birthday", type: "date" },
+  };
   const [newUserArr, setNewUserArr] = useState(userArr);
   const [searchedItem, setSearchedItem] = useState("");
   const [order, setOrder] = useState("");
+  const [sortStatus, setSortStatus] = useState({});
 
-  const sortData = () => {
-    
+
+  const sortData = (headerUser) => {
+    const { key, type } = columnMap[headerUser];
+
+    const sorted = [...newUserArr].sort((a, b) => {
+      let sortValue = 0;
+      if (type === "date") {
+        sortValue = new Date(a[key]) - new Date(b[key]);
+      } else {
+        sortValue = a[key].localeCompare(b[key]);
+      }
+      return order === "dsc" ? -sortValue : sortValue;
+    });
+    setNewUserArr(sorted);
+
+    setSortStatus((prev) => ({
+      ...prev,
+      [headerUser]: order === "dsc" ? "asc" : "dsc",
+    }));
+
     if (order === "" || "asc") {
-      let sortUserName = [...newUserArr].sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
       setOrder("dsc");
-      setNewUserArr(sortUserName);
-    } if (order === "dsc") {
-      let sortUserName = [...newUserArr].sort((a, b) =>
-        b.name.localeCompare(a.name)
-      );
+    }
+    if (order === "dsc") {
       setOrder("asc");
-      setNewUserArr(sortUserName);
     }
   };
 
@@ -67,6 +85,7 @@ const Home = () => {
         bodyData={searchedArray}
         removeItem={(el) => deleteData(el)}
         sortData={sortData}
+        ordIcon={sortStatus}
       />
       <AddData saveData={(val) => addDataToArr(val)} />
     </>
